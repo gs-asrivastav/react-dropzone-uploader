@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {FileUploader} from './components/file-uploader/FileUploader';
 import {FileUploaderEventObject} from "./interfaces/FileUploaderInterfaces";
-import {DocumentContextProvider} from "./context/DocumentContext";
+import {FileUploaderPlaceholder} from "./components/placeholder/FileUploaderPlaceholder";
 
 function App() {
   const [files, setFiles] = useState([] as any[]);
@@ -12,10 +12,10 @@ function App() {
 
   return (
       <div className="App" style={{height: '100%'}}>
-        <div>Files Added = {files.length}</div>
-        <DocumentContextProvider>
-          <FileUploader disabled={false} onAction={onAction}/>
-        </DocumentContextProvider>
+        <FileUploader disabled={false} dropPlaceholder={<FileUploaderPlaceholder/>} onAction={onAction}>
+          <div>Files Added = {files.length}</div>
+          {files.map((file: File, index) => (<div key={index}>{file.name}</div>))}
+        </FileUploader>
       </div>
   );
 }

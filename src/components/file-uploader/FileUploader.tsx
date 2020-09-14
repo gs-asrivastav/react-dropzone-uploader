@@ -3,9 +3,10 @@ import Zoom from "@material-ui/core/Zoom";
 import './FileUploader.css';
 import {transformFileListToArray} from "../../utils/UploaderUtils";
 import {FileUploaderProps} from "../../interfaces/FileUploaderInterfaces";
+import {DocumentContextProvider} from "../../context/DocumentContext";
 
 
-export const FileUploader = React.forwardRef((props: FileUploaderProps, ref) => {
+const FileUploaderWrapper = React.forwardRef((props: FileUploaderProps, ref) => {
   // Local State Only
   const [inDropZone, setInDropZone] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -101,8 +102,16 @@ export const FileUploader = React.forwardRef((props: FileUploaderProps, ref) => 
         </div>
       </Zoom>
       <div className="FileUploaderPlaceholder">
-        List Renderer
+        {props.children}
       </div>
     </div>
   </div>);
 });
+
+export const FileUploader = (props: FileUploaderProps) => {
+  return (
+      <DocumentContextProvider>
+        <FileUploaderWrapper {...props}/>
+      </DocumentContextProvider>
+  );
+}
