@@ -1,0 +1,32 @@
+.FileUploaderRoot {
+    height: 100%;
+    width: 100%;
+}
+
+.FileUploaderHighlighted {
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 0.3rem dashed #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.FileUploaderPlaceholder {
+    position: relative;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    overflow: auto;
+    height: fit-content !important;
+}
+
+.FileUploaderFileInput {
+    display: none;
+}
+
+.FileUploaderOverlay {
+    height: 100%;
+}

@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {FileUploader} from './components/file-uploader/FileUploader';
+import {FileUploaderEventObject} from "./interfaces/FileUploaderInterfaces";
+import {DocumentContextProvider} from "./context/DocumentContext";
 
 function App() {
+  const [files, setFiles] = useState([] as any[]);
+
+  const onAction = (action: FileUploaderEventObject) => {
+    setFiles([...files, ...action.data]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App" style={{height: '100%'}}>
+        <div>Files Added = {files.length}</div>
+        <DocumentContextProvider>
+          <FileUploader disabled={false} onAction={onAction}/>
+        </DocumentContextProvider>
+      </div>
   );
 }
 
