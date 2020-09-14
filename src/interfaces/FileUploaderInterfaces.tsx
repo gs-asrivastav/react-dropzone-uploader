@@ -10,13 +10,13 @@ export interface FileUploaderBootstrap {
   } | null;
   states: string[]
 }
+
 export interface FileUploaderEventObject {
   action: string;
   data: any;
 }
 
-export interface FileUploaderProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'root'>{
+export interface FileUploaderProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'root'> {
   disabled: boolean;
   onAction: (arg: FileUploaderEventObject) => void;
-  dropPlaceholder?: React.ReactNode;
 }

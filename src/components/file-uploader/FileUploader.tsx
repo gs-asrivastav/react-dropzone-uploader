@@ -97,9 +97,7 @@ const FileUploaderWrapper = React.forwardRef((props: FileUploaderProps, ref) => 
          onDragOver={onDragOver}
          onDragEnter={onDragEnter}>
       <Zoom in={inDropZone}>
-        <div className="FileUploaderHighlighted" onDrop={onDrop} onDragLeave={onDragLeave}>
-          {!!props.dropPlaceholder ? props.dropPlaceholder : null}
-        </div>
+        <div className="FileUploaderHighlighted" onDrop={onDrop} onDragLeave={onDragLeave} />
       </Zoom>
       <div className="FileUploaderPlaceholder">
         {props.children}
