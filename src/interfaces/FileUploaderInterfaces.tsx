@@ -1,6 +1,15 @@
 import React from "react";
 import {StandardProps} from "@material-ui/core";
 
+export interface FileUploaderBootstrap {
+  limits: {
+    maximumFileSizeInBytes: number,
+    allowedExtensions: string[]
+    maxConcurrentUploads: number,
+    maxFilesPerPage: number
+  } | null;
+  states: string[]
+}
 export interface FileUploaderEventObject {
   action: string;
   data: any;

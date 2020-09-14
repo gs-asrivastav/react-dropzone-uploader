@@ -1,48 +1,17 @@
 import React, {createContext, useEffect, useState} from "react";
+import {FileUploaderBootstrap} from "../interfaces/FileUploaderInterfaces";
+import {UploaderConstants} from "../utils/UploaderConstants";
 
-export interface DocumentContextInterface {
-  limits: {
-    maximumFileSizeInBytes: number,
-    allowedExtensions: string[]
-    maxConcurrentUploads: number,
-    maxFilesPerPage: number
-  } | null;
-  states: string[]
-}
-
-export const DocumentContext = createContext<DocumentContextInterface>({
+export const DocumentContext = createContext<FileUploaderBootstrap>({
   limits: null,
   states: []
 });
 
 export const DocumentContextProvider = (props: any) => {
-  const [data, setData] = useState(null as any);
+  const [data, setData] = useState(null as FileUploaderBootstrap | null);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    setData({
-      "limits": {
-        "maximumFileSizeInBytes": 50000000,
-        "allowedExtensions": [
-          "pdf",
-          "xlsx",
-          "xls",
-          "pptx",
-          "ppt",
-          "doc",
-          "docx",
-          "txt",
-          "rtf"
-        ],
-        "maxConcurrentUploads": 5,
-        "maxFilesPerPage": 20
-      },
-      "states": [
-        "processing",
-        "failed",
-        "success",
-        "queued"
-      ]
-    });
+    setData(UploaderConstants.UPLOADER_BOOTSTRAP)
     setLoaded(true)
   }, []);
   return (
